@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "io.github.balmescastro.twa",
+      "sha256_cert_fingerprints": [
+        "8A:B0:84:2B:32:54:5C:BA:1C:96:FF:38:DF:0E:FC:D9:F7:1F:84:6C:CE:77:0F:2E:31:61:51:97:94:DC:72:D3"
+      ]
+    }
+  }
+]
