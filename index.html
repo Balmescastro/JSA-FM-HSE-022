@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="FM-HSE-022 — Análisis Continuo de Peligros por la Tarea">
+  <meta name="theme-color" content="#1a2332">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>FM-HSE-022 · Análisis de Peligros</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════
+       BARRA SUPERIOR
+  ════════════════════════════════════════════════ -->
+  <header class="app-header">
+    <div class="app-header__brand">
+      <span class="app-header__code">FM-HSE-022</span>
+      <span class="app-header__title">Análisis de Peligros</span>
+    </div>
+    <div class="app-header__actions">
+      <button class="btn-icon" id="btn-import-backup" title="Cargar borrador" aria-label="Cargar borrador JSON">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+      </button>
+      <button class="btn-icon" id="btn-export-backup" title="Guardar borrador" aria-label="Guardar borrador JSON">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      </button>
+      <button class="btn-icon btn-icon--danger" id="btn-new-form" title="Nuevo formulario" aria-label="Nuevo formulario">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+      </button>
+    </div>
+    <!-- Input oculto para importación de JSON -->
+    <input type="file" id="input-import-file" accept=".json" hidden aria-hidden="true">
+  </header>
+
+  <!-- Banner de borrador recuperado (oculto por defecto) -->
+  <div class="draft-banner hidden" id="draft-banner" role="alert">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <span id="draft-banner-text">Se encontró un formulario en progreso.</span>
+    <div class="draft-banner__actions">
+      <button class="btn-banner btn-banner--primary" id="btn-restore-draft">Continuar</button>
+      <button class="btn-banner btn-banner--ghost" id="btn-discard-draft">Descartar</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       CONTENIDO PRINCIPAL
+  ════════════════════════════════════════════════ -->
+  <main class="app-main" id="app-main">
+
+    <!-- Indicador de carga inicial -->
+    <div class="loading-screen" id="loading-screen" role="status" aria-live="polite">
+      <div class="loading-screen__spinner"></div>
+      <p class="loading-screen__text">Cargando configuración…</p>
+    </div>
+
+    <!-- Formulario principal (oculto hasta que carguen los JSON) -->
+    <form class="form-hse" id="form-hse" novalidate hidden>
+
+      <!-- ─────────────────────────────────────────
+           SECCIÓN 1 · INFORMACIÓN GENERAL (SF-01)
+      ────────────────────────────────────────── -->
+      <section class="form-section" id="sec-general">
+        <details class="section-card" open>
+          <summary class="section-card__header">
+            <div class="section-card__title-group">
+              <span class="section-card__number">1</span>
+              <span class="section-card__title">Información General</span>
+              <span class="section-card__subtitle" id="summary-general"></span>
+            </div>
+            <span class="section-card__status" id="status-general" aria-live="polite"></span>
+          </summary>
+          <div class="section-card__body" id="body-general">
+            <!-- Renderizado por app.js → UI.General -->
+          </div>
+        </details>
+      </section>
+
+      <!-- ─────────────────────────────────────────
+           SECCIÓN 2 · RESPONSABLES (SF-02)
+      ────────────────────────────────────────── -->
+      <section class="form-section" id="sec-responsables">
+        <details class="section-card">
+          <summary class="section-card__header">
+            <div class="section-card__title-group">
+              <span class="section-card__number">2</span>
+              <span class="section-card__title">Responsables de la Tarea</span>
+              <span class="section-card__subtitle" id="summary-responsables"></span>
+            </div>
+            <span class="section-card__status" id="status-responsables" aria-live="polite"></span>
+          </summary>
+          <div class="section-card__body" id="body-responsables">
+            <!-- Renderizado por app.js → UI.Responsables -->
+          </div>
+        </details>
+      </section>
+
+      <!-- ─────────────────────────────────────────
+           SECCIÓN 3 · PUNTO DE ENCUENTRO (SF-03)
+      ────────────────────────────────────────── -->
+      <section class="form-section" id="sec-encuentro">
+        <details class="section-card">
+          <summary class="section-card__header">
+            <div class="section-card__title-group">
+              <span class="section-card__number">3</span>
+              <span class="section-card__title">Punto de Encuentro</span>
+              <span class="section-card__subtitle" id="summary-encuentro"></span>
+            </div>
+            <span class="section-card__status" id="status-encuentro" aria-live="polite"></span>
+          </summary>
+          <div class="section-card__body" id="body-encuentro">
+            <!-- Renderizado por app.js → UI.Ubicacion -->
+          </div>
+        </details>
+      </section>
+
+      <!-- ─────────────────────────────────────────
+           SECCIÓN 4 · DUCHA Y LAVAOJOS (SF-04)
+      ────────────────────────────────────────── -->
+      <section class="form-section" id="sec-ducha">
+        <details class="section-card">
+          <summary class="section-card__header">
+            <div class="section-card__title-group">
+              <span class="section-card__number">4</span>
+              <span class="section-card__title">Ducha y Lavaojos</span>
+              <span class="section-card__subtitle" id="summary-ducha"></span>
+            </div>
+            <span class="section-card__status" id="status-ducha" aria-live="polite"></span>
+          </summary>
+          <div class="section-card__body" id="body-ducha">
+            <!-- Renderizado por app.js → UI.Ubicacion -->
+          </div>
+        </details>
+      </section>
+
+      <!-- ─────────────────────────────────────────
+           SECCIÓN 5 · SEÑALES DE PARADA (SF-05)
+      ────────────────────────────────────────── -->
+      <section class="form-section" id="sec-senales">
+        <details class="section-card">
+          <summary class="section-card__header">
+            <div class="section-card__title-group">
+              <span class="section-card__number">5</span>
+              <span class="section-card__title">Señales para Detener la Tarea</span>
+            </div>
+            <span class="section-card__status" id="status-senales" aria-live="polite"></span>
+          </summary>
+          <div class="section-card__body" id="body-senales">
+            <!-- Renderizado por app.js → UI.Senales -->
+          </div>
+        </details>
+      </section>
+
+      <!-- ─────────────────────────────────────────
+           SECCIÓN 6 · PASOS DE LA TAREA (SF-06/07/08/17)
+      ────────────────────────────────────────── -->
+      <section class="form-section" id="sec-tipos-trabajo">
+        <details class="section-card" open>
+          <summary class="section-card__header">
+            <div class="section-card__title-group">
+              <span class="section-card__number">6</span>
+              <span class="section-card__title">Tipos de Trabajo</span>
+              <span class="section-card__subtitle" id="summary-tipos-trabajo"></span>
+            </div>
+            <span class="section-card__status" id="status-tipos-trabajo" aria-live="polite"></span>
+          </summary>
+          <div class="section-card__body" id="body-tipos-trabajo">
+            <!-- Renderizado por app.js → UITiposTrabajo -->
+          </div>
+        </details>
+      </section>
+
+      <!-- ─────────────────────────────────────────
+           SECCIÓN 7 · PASOS DE LA TAREA (SF-06/07/08/17)
+      ────────────────────────────────────────── -->
+      <section class="form-section" id="sec-pasos">
+        <details class="section-card" open>
+          <summary class="section-card__header">
+            <div class="section-card__title-group">
+              <span class="section-card__number">7</span>
+              <span class="section-card__title">Pasos de la Tarea</span>
+            </div>
+            <span class="section-card__status" id="status-pasos" aria-live="polite"></span>
+          </summary>
+          <div class="section-card__body" id="body-pasos">
+            <!-- Contador global de completitud -->
+            <div class="steps-overview" id="steps-overview" hidden>
+              <span id="steps-counter-complete" class="badge badge--success">0 completos</span>
+              <span id="steps-counter-pending" class="badge badge--warning">0 pendientes</span>
+            </div>
+
+            <!-- Lista de pasos (renderizada por app.js → UI.Pasos) -->
+            <div class="steps-list" id="steps-list" role="list">
+              <!-- StepCards insertadas dinámicamente -->
+            </div>
+
+            <!-- Botón agregar paso -->
+            <button type="button" class="btn-add" id="btn-add-step">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Agregar Paso
+            </button>
+          </div>
+        </details>
+      </section>
+
+      <!-- ─────────────────────────────────────────
+           SECCIÓN 7 · RESUMEN TÉCNICO (SF-09)
+      ────────────────────────────────────────── -->
+      <section class="form-section" id="sec-resumen">
+        <details class="section-card section-card--review">
+          <summary class="section-card__header">
+            <div class="section-card__title-group">
+              <span class="section-card__number">7</span>
+              <span class="section-card__title">Resumen Técnico</span>
+            </div>
+            <span class="section-card__badge">Solo lectura</span>
+          </summary>
+          <div class="section-card__body" id="body-resumen">
+            <!-- Renderizado por app.js → UI.Resumen -->
+          </div>
+        </details>
+      </section>
+
+      <!-- ─────────────────────────────────────────
+           SECCIÓN 8 · APROBACIÓN HSE (SF-10)
+      ────────────────────────────────────────── -->
+      <section class="form-section" id="sec-aprobacion">
+        <details class="section-card section-card--approval">
+          <summary class="section-card__header">
+            <div class="section-card__title-group">
+              <span class="section-card__number">8</span>
+              <span class="section-card__title">Aprobación HSE</span>
+            </div>
+            <span class="section-card__status" id="status-aprobacion" aria-live="polite"></span>
+          </summary>
+          <div class="section-card__body" id="body-aprobacion">
+            <!-- Renderizado por app.js → UI.Aprobacion -->
+          </div>
+        </details>
+      </section>
+
+      <!-- ─────────────────────────────────────────
+           SECCIÓN 9 · IDENTIFICACIÓN DEL DOCUMENTO (SF-11/SF-18/SF-19)
+      ────────────────────────────────────────── -->
+      <section class="form-section" id="sec-docid">
+        <details class="section-card section-card--doc">
+          <summary class="section-card__header">
+            <div class="section-card__title-group">
+              <span class="section-card__number">9</span>
+              <span class="section-card__title">Identificación del Documento</span>
+            </div>
+            <span class="section-card__status" id="status-docid" aria-live="polite"></span>
+          </summary>
+          <div class="section-card__body" id="body-docid">
+            <!-- Renderizado por app.js → UI.DocId -->
+          </div>
+        </details>
+      </section>
+
+      <!-- ─────────────────────────────────────────
+           BARRA DE ACCIÓN FINAL
+      ────────────────────────────────────────── -->
+      <div class="action-bar" id="action-bar">
+        <button type="button" class="btn-secondary" id="btn-print-fallback" title="Imprimir directamente">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          Imprimir
+        </button>
+        <button type="button" class="btn-primary" id="btn-generate-pdf" disabled aria-disabled="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+          Generar PDF
+        </button>
+      </div>
+
+    </form><!-- /form-hse -->
+  </main>
+
+  <!-- ═══════════════════════════════════════════════
+       MODAL · VISTA PREVIA PDF (SF-19)
+  ════════════════════════════════════════════════ -->
+  <div class="modal-overlay hidden" id="modal-preview" role="dialog" aria-modal="true" aria-labelledby="modal-preview-title">
+    <div class="modal modal--preview">
+      <div class="modal__header">
+        <h2 class="modal__title" id="modal-preview-title">Vista Previa del PDF</h2>
+        <span class="modal__filename" id="modal-preview-filename"></span>
+        <button class="btn-icon modal__close" id="btn-preview-close" aria-label="Cerrar vista previa">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <!-- iframe para vista previa (escritorio/iOS) -->
+        <iframe class="pdf-preview-frame" id="pdf-preview-frame" title="Vista previa del PDF generado" aria-label="Vista previa del documento PDF"></iframe>
+        <!-- Fallback para Android y browsers que no renderizan PDF en iframe -->
+        <div class="pdf-preview-fallback hidden" id="pdf-preview-fallback">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <p>Vista previa no disponible en este dispositivo.</p>
+          <p class="text-muted">El PDF fue generado correctamente y está listo para descargar.</p>
+          <button type="button" class="btn-secondary" id="btn-open-pdf-tab">
+            Abrir en nueva pestaña
+          </button>
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button type="button" class="btn-secondary" id="btn-preview-cancel">
+          Cancelar
+        </button>
+        <button type="button" class="btn-primary" id="btn-preview-confirm">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Confirmar y Descargar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       MODAL · CONFIRMACIÓN GENÉRICA
+  ════════════════════════════════════════════════ -->
+  <div class="modal-overlay hidden" id="modal-confirm" role="dialog" aria-modal="true" aria-labelledby="modal-confirm-title">
+    <div class="modal modal--confirm">
+      <div class="modal__header">
+        <h2 class="modal__title" id="modal-confirm-title"></h2>
+      </div>
+      <div class="modal__body">
+        <p id="modal-confirm-message"></p>
+      </div>
+      <div class="modal__footer">
+        <button type="button" class="btn-secondary" id="btn-confirm-cancel">Cancelar</button>
+        <button type="button" class="btn-primary btn-primary--danger" id="btn-confirm-ok">Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       TOAST · NOTIFICACIONES NO BLOQUEANTES
+  ════════════════════════════════════════════════ -->
+  <div class="toast-container" id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
+
+  <!-- ═══════════════════════════════════════════════
+       SCRIPTS
+  ════════════════════════════════════════════════ -->
+  <script src="lib/jspdf.umd.min.js"></script>
+  <script src="app.js"></script>
+  <script>
+    /* Etapa 2A — Registro del Service Worker (capa offline aditiva).
+       Degrada con gracia si el navegador no soporta SW. No bloquea la app. */
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('sw.js').catch(function (err) {
+          console.warn('Service worker no registrado:', err);
+        });
+      });
+    }
+  </script>
+
+</body>
+</html>

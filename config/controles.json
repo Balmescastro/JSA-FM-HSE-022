@@ -1,0 +1,95 @@
+[
+  {
+    "grupo": "Permisos y Autorizaciones",
+    "controles": [
+      { "codigo": "1",  "descripcion": "Permiso de trabajo en caliente",                                                              "grupo": "Permisos y Autorizaciones" },
+      { "codigo": "2",  "descripcion": "Permiso de entrada a espacio confinado",                                                      "grupo": "Permisos y Autorizaciones" }
+    ]
+  },
+  {
+    "grupo": "Procedimientos y Gestión Operativa",
+    "controles": [
+      { "codigo": "3",  "descripcion": "Procedimientos de trabajo / plan de emergencia específico",                                   "grupo": "Procedimientos y Gestión Operativa" },
+      { "codigo": "4",  "descripcion": "No ejecutar trabajos en paralelo o simultáneos en la misma área",                             "grupo": "Procedimientos y Gestión Operativa" },
+      { "codigo": "5",  "descripcion": "Equipos de comunicación (radios) entre los ejecutores",                                       "grupo": "Procedimientos y Gestión Operativa" },
+      { "codigo": "6",  "descripcion": "Instalación de avisos de prevención",                                                         "grupo": "Procedimientos y Gestión Operativa" },
+      { "codigo": "7",  "descripcion": "Uso de guardas y barreras",                                                                   "grupo": "Procedimientos y Gestión Operativa" },
+      { "codigo": "8",  "descripcion": "Inspección del área de trabajo para revisar materiales y/o sustancias inflamables",           "grupo": "Procedimientos y Gestión Operativa" }
+    ]
+  },
+  {
+    "grupo": "Prevención y Control de Incendios",
+    "controles": [
+      { "codigo": "9",  "descripcion": "Disponibilidad de extintores",                                                                "grupo": "Prevención y Control de Incendios" },
+      { "codigo": "10", "descripcion": "Vigía de fuego durante el trabajo",                                                           "grupo": "Prevención y Control de Incendios" },
+      { "codigo": "40", "descripcion": "Disponibilidad de extintores en el área",                                                     "grupo": "Prevención y Control de Incendios" }
+    ]
+  },
+  {
+    "grupo": "Aislamiento y Control de Energías",
+    "controles": [
+      { "codigo": "13", "descripcion": "Bloqueado y etiquetado de energías peligrosas",                                               "grupo": "Aislamiento y Control de Energías" },
+      { "codigo": "14", "descripcion": "Control de atmósferas peligrosas",                                                            "grupo": "Aislamiento y Control de Energías" }
+    ]
+  },
+  {
+    "grupo": "Espacios Confinados y Rescate",
+    "controles": [
+      { "codigo": "11", "descripcion": "Vigía externo permanente",                                                                    "grupo": "Espacios Confinados y Rescate" },
+      { "codigo": "12", "descripcion": "Plan de rescate y de emergencia",                                                             "grupo": "Espacios Confinados y Rescate" },
+      { "codigo": "15", "descripcion": "Evaluación de ventilación antes del ingreso",                                                  "grupo": "Espacios Confinados y Rescate" },
+      { "codigo": "16", "descripcion": "Instalación de extractores y/o ventiladores",                                                  "grupo": "Espacios Confinados y Rescate" },
+      { "codigo": "17", "descripcion": "Iluminación segura para espacios confinados",                                                  "grupo": "Espacios Confinados y Rescate" }
+    ]
+  },
+  {
+    "grupo": "Equipos, Herramientas y Sistemas Presurizados",
+    "controles": [
+      { "codigo": "18", "descripcion": "Inspección preoperacional de equipos",                                                        "grupo": "Equipos, Herramientas y Sistemas Presurizados" },
+      { "codigo": "19", "descripcion": "Herramientas apropiadas para la tarea",                                                       "grupo": "Equipos, Herramientas y Sistemas Presurizados" },
+      { "codigo": "20", "descripcion": "Cables de herramientas eléctricas en buen estado",                                            "grupo": "Equipos, Herramientas y Sistemas Presurizados" },
+      { "codigo": "21", "descripcion": "Suministro de tensión adecuado para los equipos",                                             "grupo": "Equipos, Herramientas y Sistemas Presurizados" },
+      { "codigo": "22", "descripcion": "Mangueras, conexiones y accesorios con fluidos a presión en buen estado",                     "grupo": "Equipos, Herramientas y Sistemas Presurizados" },
+      { "codigo": "39", "descripcion": "Lavado y purga del tanque antes de intervenir",                                               "grupo": "Equipos, Herramientas y Sistemas Presurizados" },
+      { "codigo": "42", "descripcion": "Equipos eléctricos a prueba de explosión",                                                    "grupo": "Equipos, Herramientas y Sistemas Presurizados" }
+    ]
+  },
+  {
+    "grupo": "Izaje, Caída de Objetos y Manipulación de Cargas",
+    "controles": [
+      { "codigo": "23", "descripcion": "Asegurar o retirar objetos que están encima",                                                 "grupo": "Izaje, Caída de Objetos y Manipulación de Cargas" },
+      { "codigo": "24", "descripcion": "Prohibición de movimiento de cargas por encima del personal",                                 "grupo": "Izaje, Caída de Objetos y Manipulación de Cargas" },
+      { "codigo": "25", "descripcion": "Manipulación de cargas entre dos o más personas",                                             "grupo": "Izaje, Caída de Objetos y Manipulación de Cargas" },
+      { "codigo": "26", "descripcion": "Uso de ayudas mecánicas (zorras, carretillas, montacargas)",                                  "grupo": "Izaje, Caída de Objetos y Manipulación de Cargas" }
+    ]
+  },
+  {
+    "grupo": "Factores Humanos y Ergonomía",
+    "controles": [
+      { "codigo": "27", "descripcion": "Rotaciones de personal",                                                                      "grupo": "Factores Humanos y Ergonomía" },
+      { "codigo": "28", "descripcion": "Límites en tiempo de exposición (descansos, pausas)",                                         "grupo": "Factores Humanos y Ergonomía" },
+      { "codigo": "29", "descripcion": "Hidratación periódica",                                                                       "grupo": "Factores Humanos y Ergonomía" }
+    ]
+  },
+  {
+    "grupo": "Elementos de Protección Personal (EPP)",
+    "controles": [
+      { "codigo": "30", "descripcion": "Uso de EPP básicos: casco, gafas de seguridad, guantes adecuados al riesgo, botas de seguridad y ropa de trabajo", "grupo": "Elementos de Protección Personal (EPP)" },
+      { "codigo": "31", "descripcion": "Uso de protección respiratoria: media cara o full face",                                      "grupo": "Elementos de Protección Personal (EPP)" },
+      { "codigo": "32", "descripcion": "Uso de protección auditiva",                                                                  "grupo": "Elementos de Protección Personal (EPP)" },
+      { "codigo": "33", "descripcion": "Uso de arnés y eslinga en Y",                                                                 "grupo": "Elementos de Protección Personal (EPP)" },
+      { "codigo": "34", "descripcion": "Uso de eslinga de posicionamiento",                                                           "grupo": "Elementos de Protección Personal (EPP)" },
+      { "codigo": "35", "descripcion": "Sistema de línea retráctil",                                                                  "grupo": "Elementos de Protección Personal (EPP)" },
+      { "codigo": "36", "descripcion": "Uso de equipo con sistema de autocontenido",                                                  "grupo": "Elementos de Protección Personal (EPP)" },
+      { "codigo": "37", "descripcion": "Uso ropa de trabajo impermeable",                                                             "grupo": "Elementos de Protección Personal (EPP)" },
+      { "codigo": "41", "descripcion": "Inspección de arnés y equipos contra caída",                                                  "grupo": "Elementos de Protección Personal (EPP)" }
+    ]
+  },
+  {
+    "grupo": "Emergencias y Atención Ambiental",
+    "controles": [
+      { "codigo": "38", "descripcion": "Kit para control de derrames",                                                                "grupo": "Emergencias y Atención Ambiental" },
+      { "codigo": "43", "descripcion": "Suspensión de la tarea por condiciones climáticas",                                           "grupo": "Emergencias y Atención Ambiental" }
+    ]
+  }
+]

@@ -1,0 +1,53 @@
+{
+  "_meta": {
+    "descripcion": "Catálogo independiente de Tipos de Trabajo (Fase 6A). Fuente de verdad de los TT globales del análisis. El campo peligroTT mapea cada TT a su peligro equivalente en peligros.json.",
+    "version": 1
+  },
+  "tiposTrabajo": [
+    {
+      "id": "alturas",
+      "label": "Trabajo en Alturas",
+      "peligroTT": "TT32",
+      "descripcion": "Tareas con riesgo de caída a diferente nivel.",
+      "estado": "activo",
+      "orden": 1,
+      "icono": ""
+    },
+    {
+      "id": "confinado",
+      "label": "Trabajo en Espacio Confinado",
+      "peligroTT": "TT33",
+      "descripcion": "Ingreso a espacios con entrada/salida limitada y ventilación natural deficiente.",
+      "estado": "activo",
+      "orden": 2,
+      "icono": ""
+    },
+    {
+      "id": "caliente",
+      "label": "Trabajo en Caliente",
+      "peligroTT": "TT34",
+      "descripcion": "Actividades que generan chispas, llamas o calor: soldadura, corte, esmerilado.",
+      "estado": "activo",
+      "orden": 3,
+      "icono": ""
+    },
+    {
+      "id": "izaje",
+      "label": "Izaje de Cargas",
+      "peligroTT": "TT35",
+      "descripcion": "Levantamiento y movimiento de cargas mediante equipos de izaje.",
+      "estado": "activo",
+      "orden": 4,
+      "icono": ""
+    },
+    {
+      "id": "energizado",
+      "label": "Trabajo con Equipo Energizado",
+      "peligroTT": "TT36",
+      "descripcion": "Intervención de equipos con presencia de energías peligrosas (eléctrica, mecánica, hidráulica, neumática u otras) que requieren control y bloqueo.",
+      "estado": "activo",
+      "orden": 5,
+      "icono": ""
+    }
+  ]
+}

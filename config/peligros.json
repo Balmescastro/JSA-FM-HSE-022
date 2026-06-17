@@ -1,0 +1,123 @@
+[
+  {
+    "categoria": "FÍSICOS",
+    "peligros": [
+      { "codigo": "F1",  "descripcion": "Ruido de Impacto",                             "categoria": "FÍSICOS", "criticidad": "MEDIA" },
+      { "codigo": "F2",  "descripcion": "Ruido Intermitente o Continuo",                "categoria": "FÍSICOS", "criticidad": "MEDIA" },
+      { "codigo": "F3",  "descripcion": "Vibración",                                    "categoria": "FÍSICOS", "criticidad": "MEDIA" },
+      { "codigo": "F4",  "descripcion": "Exposición a rayos x, gamma, beta o alfa",     "categoria": "FÍSICOS", "criticidad": "ALTA"  },
+      { "codigo": "F5",  "descripcion": "Exposición al Sol",                            "categoria": "FÍSICOS", "criticidad": "BAJA"  },
+      { "codigo": "F6",  "descripcion": "Exposición a rayos de soldadura",              "categoria": "FÍSICOS", "criticidad": "ALTA"  },
+      { "codigo": "F7",  "descripcion": "Disconfort Térmico",                           "categoria": "FÍSICOS", "criticidad": "MEDIA" }
+    ]
+  },
+  {
+    "categoria": "QUÍMICOS",
+    "peligros": [
+      { "codigo": "Q8",  "descripcion": "Gases y/o vapores",                            "categoria": "QUÍMICOS", "criticidad": "ALTA"  },
+      { "codigo": "Q9",  "descripcion": "Deficiencia de oxígeno",                       "categoria": "QUÍMICOS", "criticidad": "ALTA"  },
+      { "codigo": "Q10", "descripcion": "Contacto con productos químicos peligrosos",   "categoria": "QUÍMICOS", "criticidad": "ALTA"  },
+      { "codigo": "Q11", "descripcion": "Humos Metálicos",                              "categoria": "QUÍMICOS", "criticidad": "ALTA"  },
+      { "codigo": "Q12", "descripcion": "Material Particulado",                         "categoria": "QUÍMICOS", "criticidad": "MEDIA" },
+      { "codigo": "Q13", "descripcion": "Salpicaduras de químicos",                     "categoria": "QUÍMICOS", "criticidad": "ALTA"  }
+    ]
+  },
+  {
+    "categoria": "MECÁNICOS",
+    "peligros": [
+      { "codigo": "M14", "descripcion": "Manipulación de equipos y herramientas",       "categoria": "MECÁNICOS", "criticidad": "MEDIA" },
+      { "codigo": "M15", "descripcion": "Equipos rotativos",                            "categoria": "MECÁNICOS", "criticidad": "ALTA"  },
+      { "codigo": "M16", "descripcion": "Material proyectado (Sólido y Fluidos)",       "categoria": "MECÁNICOS", "criticidad": "ALTA"  },
+      { "codigo": "M17", "descripcion": "Objetos cortantes o filosos",                  "categoria": "MECÁNICOS", "criticidad": "MEDIA" },
+      { "codigo": "M19", "descripcion": "Uso de Herramientas manuales",                 "categoria": "MECÁNICOS", "criticidad": "MEDIA" },
+      { "codigo": "M20", "descripcion": "Objetos en movimiento (Atrapamientos)",        "categoria": "MECÁNICOS", "criticidad": "ALTA"  },
+      { "codigo": "M21", "descripcion": "Fluidos a Alta/Baja Presión",                  "categoria": "MECÁNICOS", "criticidad": "ALTA"  },
+      { "codigo": "M22", "descripcion": "Superficies Calientes",                        "categoria": "MECÁNICOS", "criticidad": "MEDIA" }
+    ]
+  },
+  {
+    "categoria": "LOCATIVOS",
+    "peligros": [
+      { "codigo": "L22", "descripcion": "Tránsito por escaleras",                       "categoria": "LOCATIVOS", "criticidad": "MEDIA" },
+      { "codigo": "L23", "descripcion": "Líneas eléctricas enterradas o aéreas",        "categoria": "LOCATIVOS", "criticidad": "ALTA"  },
+      { "codigo": "L24", "descripcion": "Superficies deslizantes",                      "categoria": "LOCATIVOS", "criticidad": "MEDIA" },
+      { "codigo": "L25", "descripcion": "Objetos suspendidos o elevados",               "categoria": "LOCATIVOS", "criticidad": "ALTA"  },
+      { "codigo": "L26", "descripcion": "Área de trabajo fuera de la línea de visión",  "categoria": "LOCATIVOS", "criticidad": "MEDIA" },
+      { "codigo": "L27", "descripcion": "Diferencia de nivel",                          "categoria": "LOCATIVOS", "criticidad": "ALTA"  },
+      { "codigo": "L28", "descripcion": "Deficiencias de orden y aseo",                 "categoria": "LOCATIVOS", "criticidad": "BAJA"  },
+      { "codigo": "L29", "descripcion": "Iluminación Insuficiente",                     "categoria": "LOCATIVOS", "criticidad": "MEDIA" },
+      { "codigo": "L30", "descripcion": "Estructuras en el sitio de trabajo",           "categoria": "LOCATIVOS", "criticidad": "MEDIA" },
+      { "codigo": "L31", "descripcion": "Almacenamiento de inflamables/combustibles",   "categoria": "LOCATIVOS", "criticidad": "ALTA"  }
+    ]
+  },
+  {
+    "categoria": "TIPO DE TRABAJO",
+    "peligros": [
+      { "codigo": "TT32", "descripcion": "Trabajo en alturas",                          "categoria": "TIPO DE TRABAJO", "criticidad": "ALTA" },
+      { "codigo": "TT33", "descripcion": "Trabajo en Espacio Confinado",                "categoria": "TIPO DE TRABAJO", "criticidad": "ALTA" },
+      { "codigo": "TT34", "descripcion": "Trabajo en Caliente",                         "categoria": "TIPO DE TRABAJO", "criticidad": "ALTA" },
+      { "codigo": "TT35", "descripcion": "Izaje de Cargas",                             "categoria": "TIPO DE TRABAJO", "criticidad": "ALTA" }
+    ]
+  },
+  {
+    "categoria": "ELÉCTRICOS",
+    "peligros": [
+      { "codigo": "TT36", "descripcion": "Trabajo con Equipo energizado",               "categoria": "ELÉCTRICOS", "criticidad": "ALTA"  },
+      { "codigo": "TT37", "descripcion": "Estática",                                    "categoria": "ELÉCTRICOS", "criticidad": "MEDIA" },
+      { "codigo": "TT38", "descripcion": "Uso de Herramientas eléctricas",              "categoria": "ELÉCTRICOS", "criticidad": "MEDIA" },
+      { "codigo": "TT39", "descripcion": "Baja/media tensión",                          "categoria": "ELÉCTRICOS", "criticidad": "ALTA"  }
+    ]
+  },
+  {
+    "categoria": "TECNOLÓGICO",
+    "peligros": [
+      { "codigo": "T40", "descripcion": "Presencia de vapores o gases inflamables",     "categoria": "TECNOLÓGICO", "criticidad": "ALTA" },
+      { "codigo": "T41", "descripcion": "Elementos sometidos a presión",                "categoria": "TECNOLÓGICO", "criticidad": "ALTA" },
+      { "codigo": "T42", "descripcion": "Uso de gases a presión",                       "categoria": "TECNOLÓGICO", "criticidad": "ALTA" }
+    ]
+  },
+  {
+    "categoria": "TRÁNSITO O CONDUCCIÓN",
+    "peligros": [
+      { "codigo": "TC43", "descripcion": "Tránsito de Vehículos pesados",               "categoria": "TRÁNSITO O CONDUCCIÓN", "criticidad": "ALTA"  },
+      { "codigo": "TC44", "descripcion": "Vías irregulares",                            "categoria": "TRÁNSITO O CONDUCCIÓN", "criticidad": "MEDIA" },
+      { "codigo": "TC45", "descripcion": "Tránsito de Montacargas",                     "categoria": "TRÁNSITO O CONDUCCIÓN", "criticidad": "ALTA"  },
+      { "codigo": "TC46", "descripcion": "Animales en zonas de tránsito",               "categoria": "TRÁNSITO O CONDUCCIÓN", "criticidad": "BAJA"  }
+    ]
+  },
+  {
+    "categoria": "BIOMECÁNICOS",
+    "peligros": [
+      { "codigo": "B47", "descripcion": "Postura prolongada",                           "categoria": "BIOMECÁNICOS", "criticidad": "MEDIA" },
+      { "codigo": "B48", "descripcion": "Manipulación manual de cargas",                "categoria": "BIOMECÁNICOS", "criticidad": "MEDIA" },
+      { "codigo": "B49", "descripcion": "Sobreesfuerzo",                                "categoria": "BIOMECÁNICOS", "criticidad": "MEDIA" },
+      { "codigo": "B50", "descripcion": "Movimientos repetitivos",                      "categoria": "BIOMECÁNICOS", "criticidad": "BAJA"  }
+    ]
+  },
+  {
+    "categoria": "BIOLÓGICOS",
+    "peligros": [
+      { "codigo": "BG51", "descripcion": "Fluidos o excrementos",                       "categoria": "BIOLÓGICOS", "criticidad": "ALTA"  },
+      { "codigo": "BG52", "descripcion": "Vectores o insectos",                         "categoria": "BIOLÓGICOS", "criticidad": "MEDIA" },
+      { "codigo": "BG53", "descripcion": "Animales",                                    "categoria": "BIOLÓGICOS", "criticidad": "MEDIA" }
+    ]
+  },
+  {
+    "categoria": "CONDICIONES CLIMÁTICAS",
+    "peligros": [
+      { "codigo": "CL54", "descripcion": "Vientos fuertes",                             "categoria": "CONDICIONES CLIMÁTICAS", "criticidad": "ALTA"  },
+      { "codigo": "CL55", "descripcion": "Tormenta eléctrica",                          "categoria": "CONDICIONES CLIMÁTICAS", "criticidad": "ALTA"  },
+      { "codigo": "CL56", "descripcion": "Lluvia",                                      "categoria": "CONDICIONES CLIMÁTICAS", "criticidad": "MEDIA" },
+      { "codigo": "CL57", "descripcion": "Vendaval",                                    "categoria": "CONDICIONES CLIMÁTICAS", "criticidad": "ALTA"  }
+    ]
+  },
+  {
+    "categoria": "PSICOSOCIAL",
+    "peligros": [
+      { "codigo": "P58", "descripcion": "Trabajo repetitivo o monótono",                "categoria": "PSICOSOCIAL", "criticidad": "BAJA"  },
+      { "codigo": "P59", "descripcion": "Horario adicional",                            "categoria": "PSICOSOCIAL", "criticidad": "MEDIA" },
+      { "codigo": "P60", "descripcion": "Alta Concentración",                           "categoria": "PSICOSOCIAL", "criticidad": "MEDIA" },
+      { "codigo": "P61", "descripcion": "Olores ofensivos",                             "categoria": "PSICOSOCIAL", "criticidad": "MEDIA" }
+    ]
+  }
+]

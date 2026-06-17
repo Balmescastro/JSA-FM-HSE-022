@@ -1,0 +1,81 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "totalPeligros": 61,
+    "descripcion": "Matriz de relación peligro-control para FM-HSE-022. Criticidad duplicada aquí para acceso rápido sin cruzar peligros.json.",
+    "criticidades": { "ALTA": 33, "MEDIA": 22, "BAJA": 6 }
+  },
+
+  "F1":   { "criticidad": "MEDIA", "obligatorios": ["32"],                     "recomendados": ["28", "27"] },
+  "F2":   { "criticidad": "MEDIA", "obligatorios": ["32"],                     "recomendados": ["28", "27"] },
+  "F3":   { "criticidad": "MEDIA", "obligatorios": ["32", "28"],               "recomendados": ["27", "29"] },
+  "F4":   { "criticidad": "ALTA",  "obligatorios": ["30", "6"],                "recomendados": ["28", "3"]  },
+  "F5":   { "criticidad": "BAJA",  "obligatorios": ["30", "29"],               "recomendados": ["28"]       },
+  "F6":   { "criticidad": "ALTA",  "obligatorios": ["30", "1"],                "recomendados": ["6", "7"]   },
+  "F7":   { "criticidad": "MEDIA", "obligatorios": ["29", "28"],               "recomendados": ["30", "27"] },
+
+  "Q8":   { "criticidad": "ALTA",  "obligatorios": ["14", "31"],               "recomendados": ["9", "16", "30"]     },
+  "Q9":   { "criticidad": "ALTA",  "obligatorios": ["2", "11", "14", "15"],    "recomendados": ["12", "16", "17"]    },
+  "Q10":  { "criticidad": "ALTA",  "obligatorios": ["30", "31", "38"],         "recomendados": ["8", "6"]            },
+  "Q11":  { "criticidad": "ALTA",  "obligatorios": ["31", "30"],               "recomendados": ["16", "6"]           },
+  "Q12":  { "criticidad": "MEDIA", "obligatorios": ["31", "30"],               "recomendados": ["16"]                },
+  "Q13":  { "criticidad": "ALTA",  "obligatorios": ["30", "31", "38"],         "recomendados": ["6", "7"]            },
+
+  "M14":  { "criticidad": "MEDIA", "obligatorios": ["18", "19"],               "recomendados": ["30"]                },
+  "M15":  { "criticidad": "ALTA",  "obligatorios": ["7", "18", "30"],          "recomendados": ["19", "6"]           },
+  "M16":  { "criticidad": "ALTA",  "obligatorios": ["7", "30", "6"],           "recomendados": ["19", "18"]          },
+  "M17":  { "criticidad": "MEDIA", "obligatorios": ["30", "19"],               "recomendados": ["18"]                },
+  "M19":  { "criticidad": "MEDIA", "obligatorios": ["19", "30"],               "recomendados": ["18"]                },
+  "M20":  { "criticidad": "ALTA",  "obligatorios": ["7", "18", "30"],          "recomendados": ["6", "19"]           },
+  "M21":  { "criticidad": "ALTA",  "obligatorios": ["22", "18"],               "recomendados": ["30", "6", "3"]      },
+  "M22":  { "criticidad": "MEDIA", "obligatorios": ["30", "6"],                "recomendados": ["18", "7"]           },
+
+  "L22":  { "criticidad": "MEDIA", "obligatorios": ["30"],                     "recomendados": ["6", "3"]            },
+  "L23":  { "criticidad": "ALTA",  "obligatorios": ["13", "6", "30"],          "recomendados": ["3", "5"]            },
+  "L24":  { "criticidad": "MEDIA", "obligatorios": ["30", "6"],                "recomendados": ["7"]                 },
+  "L25":  { "criticidad": "ALTA",  "obligatorios": ["23", "24"],               "recomendados": ["6", "7"]            },
+  "L26":  { "criticidad": "MEDIA", "obligatorios": ["5", "6"],                 "recomendados": ["3", "4"]            },
+  "L27":  { "criticidad": "ALTA",  "obligatorios": ["30", "33", "6"],          "recomendados": ["7", "41"]           },
+  "L28":  { "criticidad": "BAJA",  "obligatorios": ["6"],                      "recomendados": ["3"]                 },
+  "L29":  { "criticidad": "MEDIA", "obligatorios": ["30", "6"],                "recomendados": ["3"]                 },
+  "L30":  { "criticidad": "MEDIA", "obligatorios": ["6", "7"],                 "recomendados": ["3", "30"]           },
+  "L31":  { "criticidad": "ALTA",  "obligatorios": ["8", "9", "40"],           "recomendados": ["6", "13"]           },
+
+  "TT32": { "criticidad": "ALTA",  "obligatorios": ["33", "34", "41"],         "recomendados": ["35", "6", "3"]      },
+  "TT33": { "criticidad": "ALTA",  "obligatorios": ["2", "11", "12", "14", "15"], "recomendados": ["16", "17", "30"] },
+  "TT34": { "criticidad": "ALTA",  "obligatorios": ["1", "9", "10"],           "recomendados": ["8", "40", "30"]     },
+  "TT35": { "criticidad": "ALTA",  "obligatorios": ["23", "24"],               "recomendados": ["25", "26", "6"]     },
+
+  "TT36": { "criticidad": "ALTA",  "obligatorios": ["13", "3", "30"],          "recomendados": ["5", "6", "42"]      },
+  "TT37": { "criticidad": "MEDIA", "obligatorios": ["42", "30"],               "recomendados": ["6"]                 },
+  "TT38": { "criticidad": "MEDIA", "obligatorios": ["20", "21", "30"],         "recomendados": ["18", "19"]          },
+  "TT39": { "criticidad": "ALTA",  "obligatorios": ["13", "21", "30"],         "recomendados": ["3", "6", "42"]      },
+
+  "T40":  { "criticidad": "ALTA",  "obligatorios": ["8", "9", "14", "40"],     "recomendados": ["1", "6", "42"]      },
+  "T41":  { "criticidad": "ALTA",  "obligatorios": ["22", "18", "3"],          "recomendados": ["13", "6"]           },
+  "T42":  { "criticidad": "ALTA",  "obligatorios": ["22", "18"],               "recomendados": ["30", "6"]           },
+
+  "TC43": { "criticidad": "ALTA",  "obligatorios": ["6", "7", "30"],           "recomendados": ["3", "5"]            },
+  "TC44": { "criticidad": "MEDIA", "obligatorios": ["6", "30"],                "recomendados": ["3"]                 },
+  "TC45": { "criticidad": "ALTA",  "obligatorios": ["6", "7", "24"],           "recomendados": ["5", "30"]           },
+  "TC46": { "criticidad": "BAJA",  "obligatorios": ["6", "30"],                "recomendados": ["3"]                 },
+
+  "B47":  { "criticidad": "MEDIA", "obligatorios": ["27", "28"],               "recomendados": ["29", "3"]           },
+  "B48":  { "criticidad": "MEDIA", "obligatorios": ["25", "26"],               "recomendados": ["28", "27", "30"]    },
+  "B49":  { "criticidad": "MEDIA", "obligatorios": ["25", "28"],               "recomendados": ["27", "29"]          },
+  "B50":  { "criticidad": "BAJA",  "obligatorios": ["27", "28"],               "recomendados": ["29"]                },
+
+  "BG51": { "criticidad": "ALTA",  "obligatorios": ["30", "31"],               "recomendados": ["38", "6"]           },
+  "BG52": { "criticidad": "MEDIA", "obligatorios": ["30", "37"],               "recomendados": ["6", "3"]            },
+  "BG53": { "criticidad": "MEDIA", "obligatorios": ["6", "30"],                "recomendados": ["3"]                 },
+
+  "CL54": { "criticidad": "ALTA",  "obligatorios": ["43", "33"],               "recomendados": ["3", "6"]            },
+  "CL55": { "criticidad": "ALTA",  "obligatorios": ["43"],                     "recomendados": ["3", "5"]            },
+  "CL56": { "criticidad": "MEDIA", "obligatorios": ["43", "37"],               "recomendados": ["30", "6"]           },
+  "CL57": { "criticidad": "ALTA",  "obligatorios": ["43"],                     "recomendados": ["3", "6"]            },
+
+  "P58":  { "criticidad": "BAJA",  "obligatorios": ["27", "28"],               "recomendados": ["29"]                },
+  "P59":  { "criticidad": "MEDIA", "obligatorios": ["28", "27"],               "recomendados": ["29", "3"]           },
+  "P60":  { "criticidad": "MEDIA", "obligatorios": ["4", "28"],                "recomendados": ["5", "27"]           },
+  "P61":  { "criticidad": "MEDIA", "obligatorios": ["31", "30"],               "recomendados": ["16", "6"]           }
+}

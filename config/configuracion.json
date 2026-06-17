@@ -1,0 +1,83 @@
+{
+  "_meta": {
+    "archivo": "configuracion.json",
+    "version": "1.1",
+    "descripcion": "Configuración operativa del formulario FM-HSE-022",
+    "nota": "Editar este archivo para adaptar la app a su instalación sin modificar código fuente"
+  },
+
+  "empresa": {
+    "nombre": "Su Empresa S.A.",
+    "sigla": "SE",
+    "documentoCodigo": "FM-HSE-022",
+    "documentoTitulo": "Análisis Continuo de Peligros por la Tarea",
+    "documentoRevision": "1",
+    "documentoFecha": "11-mar-2026"
+  },
+
+  "administrador": {
+    "_nota": "El PIN ya no se almacena aquí. La autenticación del modo administrador se gestiona por admin.js. Ver documentación de Fase 6.",
+    "autenticacion": "none",
+    "_autenticacion_opciones": ["none", "pin_hash", "token_externo"],
+    "_migracion_futura": "Reemplazar 'none' por 'pin_hash' y almacenar el hash SHA-256 del PIN en un archivo separado no versionado, o por 'token_externo' para integración con IdP corporativo."
+  },
+
+  "puntosEncuentro": [
+    "Punto de Encuentro 1",
+    "Punto de Encuentro 2",
+    "Punto de Encuentro 3",
+    "Punto de Encuentro 4",
+    "Punto de Encuentro 5"
+  ],
+
+  "duchasLavaojos": [
+    "Punto 1",
+    "Punto 2",
+    "Punto 3",
+    "Punto 4",
+    "Punto 5"
+  ],
+
+  "areasEjecutoras": [
+    { "codigo": "MEC", "descripcion": "Mecánica" },
+    { "codigo": "ELE", "descripcion": "Eléctrica" },
+    { "codigo": "INS", "descripcion": "Instrumentación" },
+    { "codigo": "CIV", "descripcion": "Civil" },
+    { "codigo": "OPE", "descripcion": "Operaciones" },
+    { "codigo": "HSE", "descripcion": "Seguridad Industrial" }
+  ],
+
+  "senalesParada": [
+    { "id": "sp01", "texto": "Cambio en el alcance de la tarea",  "tipo": "checkbox" },
+    { "id": "sp02", "texto": "Requerir EPP adicional",            "tipo": "checkbox" },
+    { "id": "sp03", "texto": "Herramienta adicional",             "tipo": "checkbox" },
+    { "id": "sp04", "texto": "Dificultad de movimientos",         "tipo": "checkbox" },
+    { "id": "sp05", "texto": "Molestias y dolores",               "tipo": "checkbox" },
+    { "id": "sp06", "texto": "Prisa / Afán",                      "tipo": "checkbox" },
+    { "id": "sp07", "texto": "Distracción / Frustración",         "tipo": "checkbox" },
+    { "id": "sp08", "texto": "Situaciones inesperadas",           "tipo": "checkbox" },
+    { "id": "sp09", "texto": "Inundación o exceso de agua",       "tipo": "checkbox" },
+    { "id": "sp10", "texto": "Escape/fuga producto",              "tipo": "checkbox" },
+    { "id": "sp11", "texto": "Material atascado",                 "tipo": "checkbox" },
+    { "id": "sp12", "texto": "Presencia de vectores/Insectos",    "tipo": "checkbox" },
+    { "id": "sp13", "texto": "Cambio de lugar trabajo",           "tipo": "checkbox" },
+    { "id": "sp14", "texto": "Otros",                             "tipo": "texto",    "placeholder": "Especifique…" },
+    { "id": "sp15", "texto": "Otros",                             "tipo": "texto",    "placeholder": "Especifique…" },
+    { "id": "sp16", "texto": "Otros",                             "tipo": "texto",    "placeholder": "Especifique…" }
+  ],
+
+  "validaciones": {
+    "minimoResponsables": 1,
+    "minimoSenalesParada": 2,
+    "_minimoSenalesParada_nota": "El formato FM-HSE-022 indica 'Escoja dos o más situaciones'. Valor 2 refleja el requisito del formato corporativo. Puede reducirse a 1 para operaciones con contexto controlado o aumentarse para operaciones de alto riesgo.",
+    "minimoPeligrosPorPaso": 1,
+    "minimoControlesPorPaso": 1
+  },
+
+  "ui": {
+    "autosaveIntervaloMs": 5000,
+    "toastDuracionMs": 3000,
+    "consecutivoFormato": "DDMMAA-HHMM",
+    "_consecutivoFormato_nota": "DDMMAA-HHMM genera ej. 290526-0903 usando la hora local del dispositivo"
+  }
+}

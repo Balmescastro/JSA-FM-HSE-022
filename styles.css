@@ -1,0 +1,2438 @@
+/* ═══════════════════════════════════════════════════════════════
+   FM-HSE-022 — Análisis Continuo de Peligros por la Tarea
+   styles.css · v2.1
+   Estética: Industrial-utilitaria refinada
+   Enfoque: Mobile-first, touch-optimized, alto contraste HSE
+════════════════════════════════════════════════════════════════ */
+
+
+/* ───────────────────────────────────────────────────────────────
+   1. VARIABLES CSS — Sistema de diseño
+──────────────────────────────────────────────────────────────── */
+:root {
+
+  /* Paleta principal — azul industrial premium oscuro */
+  --color-bg:           #080c14;
+  --color-surface:      #121822;
+  --color-surface-2:    #192230;
+  --color-surface-3:    #222d3f;
+  --color-border:       #1f2b3c;
+  --color-border-light: #2c3d55;
+
+  /* Texto */
+  --color-text-primary:   #f1f5f9;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted:     #64748b;
+  --color-text-inverse:   #080c14;
+
+  /* Acento corporativo — amarillo HSE */
+  --color-accent:       #f5c518;
+  --color-accent-dark:  #c49a10;
+  --color-accent-muted: rgba(245, 197, 24, 0.15);
+
+  /* Estados semáforo — sistema HSE estándar */
+  --color-success:       #10b981;
+  --color-success-bg:    rgba(16, 185, 129, 0.12);
+  --color-success-border:rgba(16, 185, 129, 0.3);
+
+  --color-warning:       #f59e0b;
+  --color-warning-bg:    rgba(245, 158, 11, 0.12);
+  --color-warning-border:rgba(245, 158, 11, 0.3);
+
+  --color-danger:        #ef4444;
+  --color-danger-bg:     rgba(239, 68, 68, 0.12);
+  --color-danger-border: rgba(239, 68, 68, 0.3);
+
+  --color-info:          #3b82f6;
+  --color-info-bg:       rgba(59, 130, 246, 0.12);
+  --color-info-border:   rgba(59, 130, 246, 0.3);
+
+  /* Criticidad de peligros */
+  --color-criticidad-alta:  var(--color-danger);
+  --color-criticidad-media: var(--color-warning);
+  --color-criticidad-baja:  var(--color-success);
+
+  /* Tipografía */
+  --font-mono:   'Courier New', 'Lucida Console', monospace;
+  --font-sans:   'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: var(--font-sans);
+
+  /* Escala tipográfica */
+  --text-xs:   0.70rem;   /* 11.2px */
+  --text-sm:   0.80rem;   /* 12.8px */
+  --text-base: 0.9375rem; /* 15px — base de lectura móvil */
+  --text-md:   1.0rem;    /* 16px */
+  --text-lg:   1.125rem;  /* 18px */
+  --text-xl:   1.25rem;   /* 20px */
+  --text-2xl:  1.5rem;    /* 24px */
+
+  /* Espaciado */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+
+  /* Bordes */
+  --radius-sm:  4px;
+  --radius-md:  8px;
+  --radius-lg:  12px;
+  --radius-xl:  16px;
+  --radius-full: 9999px;
+
+  /* Sombras */
+  --shadow-sm:  0 1px 3px rgba(0,0,0,0.4);
+  --shadow-md:  0 4px 12px rgba(0,0,0,0.5);
+  --shadow-lg:  0 8px 24px rgba(0,0,0,0.6);
+  --shadow-focus: 0 0 0 3px rgba(245, 197, 24, 0.35);
+
+  /* Touch — tamaño mínimo de target táctil */
+  --touch-min: 44px;
+
+  /* Transiciones */
+  --transition-fast:   120ms ease;
+  --transition-normal: 220ms ease;
+  --transition-slow:   350ms ease;
+
+  /* Header */
+  --header-height: 56px;
+
+  /* Z-index */
+  --z-banner:  100;
+  --z-action:  200;
+  --z-toast:   300;
+  --z-modal:   400;
+}
+
+
+/* ───────────────────────────────────────────────────────────────
+   2. RESET Y BASE
+──────────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: 1.55;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg);
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Eliminar highlight azul en tap móvil */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-text-primary);
+}
+
+p { margin: 0; }
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  font-size: var(--text-base);
+}
+
+/* Scrollbar personalizado (webkit) */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--color-surface); }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: var(--radius-full); }
+::-webkit-scrollbar-thumb:hover { background: var(--color-border-light); }
+
+
+/* ───────────────────────────────────────────────────────────────
+   3. UTILIDADES
+──────────────────────────────────────────────────────────────── */
+.hidden { display: none !important; }
+
+.text-muted {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.text-secondary { color: var(--color-text-secondary); }
+
+.text-mono {
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: var(--space-4) 0;
+}
+
+
+/* ───────────────────────────────────────────────────────────────
+   4. COMPONENTES DE BOTONES
+──────────────────────────────────────────────────────────────── */
+
+/* Botón primario — acción principal */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--touch-min);
+  padding: var(--space-3) var(--space-6);
+  background: var(--color-accent);
+  color: var(--color-text-inverse);
+  font-size: var(--text-base);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border-radius: var(--radius-md);
+  transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+  user-select: none;
+}
+
+.btn-primary svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--color-accent-dark);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.btn-primary:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.btn-primary:disabled,
+.btn-primary[aria-disabled="true"] {
+  background: var(--color-surface-3);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn-primary--danger {
+  background: var(--color-danger);
+  color: #fff;
+}
+.btn-primary--danger:hover:not(:disabled) {
+  background: #c0392b;
+}
+
+/* Botón secundario — acción secundaria */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--touch-min);
+  padding: var(--space-3) var(--space-5);
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-size: var(--text-base);
+  font-weight: 500;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-fast), color var(--transition-fast), background var(--transition-fast);
+  user-select: none;
+}
+
+.btn-secondary svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+.btn-secondary:hover {
+  border-color: var(--color-border-light);
+  color: var(--color-text-primary);
+  background: var(--color-surface-2);
+}
+
+.btn-secondary:active { transform: scale(0.97); }
+
+.btn-secondary:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+/* Botón ícono — header y acciones */
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--touch-min);
+  height: var(--touch-min);
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-md);
+  transition: color var(--transition-fast), background var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.btn-icon svg { width: 20px; height: 20px; }
+
+.btn-icon:hover {
+  color: var(--color-text-primary);
+  background: var(--color-surface-2);
+}
+
+.btn-icon:active { transform: scale(0.92); }
+
+.btn-icon:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.btn-icon--danger:hover {
+  color: var(--color-danger);
+  background: var(--color-danger-bg);
+}
+
+/* Botón agregar — acción de adición en listas */
+.btn-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  width: 100%;
+  min-height: var(--touch-min);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-accent-muted);
+  color: var(--color-accent);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1.5px dashed rgba(245, 197, 24, 0.4);
+  border-radius: var(--radius-md);
+  margin-top: var(--space-4);
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+  user-select: none;
+}
+
+.btn-add svg { width: 16px; height: 16px; }
+
+.btn-add:hover {
+  background: rgba(245, 197, 24, 0.22);
+  border-color: var(--color-accent);
+}
+
+.btn-add:active { transform: scale(0.98); }
+
+/* Botones banner */
+.btn-banner {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  min-height: 36px;
+}
+
+.btn-banner--primary {
+  background: var(--color-accent);
+  color: var(--color-text-inverse);
+}
+
+.btn-banner--ghost {
+  background: transparent;
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+}
+
+
+/* ───────────────────────────────────────────────────────────────
+   5. BADGES Y ETIQUETAS
+──────────────────────────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: var(--radius-full);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.badge--success {
+  background: var(--color-success-bg);
+  color: var(--color-success);
+  border: 1px solid var(--color-success-border);
+}
+
+.badge--warning {
+  background: var(--color-warning-bg);
+  color: var(--color-warning);
+  border: 1px solid var(--color-warning-border);
+}
+
+.badge--danger {
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
+  border: 1px solid var(--color-danger-border);
+}
+
+.badge--info {
+  background: var(--color-info-bg);
+  color: var(--color-info);
+  border: 1px solid var(--color-info-border);
+}
+
+.badge--neutral {
+  background: var(--color-surface-3);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+}
+
+/* Etiquetas de criticidad */
+.criticidad {
+  display: inline-block;
+  padding: 2px var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+  line-height: 1.4;
+}
+
+.criticidad--alta  { background: var(--color-danger-bg);  color: var(--color-danger);  border: 1px solid var(--color-danger-border); }
+.criticidad--media { background: var(--color-warning-bg); color: var(--color-warning); border: 1px solid var(--color-warning-border); }
+.criticidad--baja  { background: var(--color-success-bg); color: var(--color-success); border: 1px solid var(--color-success-border); }
+
+/* Badge de sugerencia */
+.suggestion-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-warning);
+  font-size: var(--text-xs);
+  font-weight: 600;
+}
+
+.suggestion-badge::before {
+  content: '⚠';
+  font-size: 0.65rem;
+}
+
+
+/* ───────────────────────────────────────────────────────────────
+   6. HEADER DE LA APLICACIÓN
+──────────────────────────────────────────────────────────────── */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-banner);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-height);
+  padding: 0 var(--space-4);
+  background: var(--color-surface);
+  border-bottom: 2px solid var(--color-accent);
+  box-shadow: var(--shadow-md);
+}
+
+.app-header__brand {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+  overflow: hidden;
+}
+
+.app-header__code {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--color-accent);
+  text-transform: uppercase;
+}
+
+.app-header__title {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.app-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  flex-shrink: 0;
+}
+
+
+/* ───────────────────────────────────────────────────────────────
+   7. BANNER DE BORRADOR
+──────────────────────────────────────────────────────────────── */
+.draft-banner {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-info-bg);
+  border-bottom: 1px solid var(--color-info-border);
+  font-size: var(--text-sm);
+  color: var(--color-info);
+}
+
+.draft-banner > svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.draft-banner > span {
+  flex: 1;
+  min-width: 0;
+}
+
+.draft-banner__actions {
+  display: flex;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+
+/* ───────────────────────────────────────────────────────────────
+   8. PANTALLA DE CARGA
+──────────────────────────────────────────────────────────────── */
+.loading-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  min-height: calc(100dvh - var(--header-height));
+  padding: var(--space-8);
+}
+
+.loading-screen__spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.loading-screen__text {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  letter-spacing: 0.05em;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+
+/* ───────────────────────────────────────────────────────────────
+   9. LAYOUT PRINCIPAL
+──────────────────────────────────────────────────────────────── */
+.app-main {
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.form-hse {
+  padding: var(--space-4) var(--space-4) calc(var(--touch-min) * 2 + var(--space-8));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.form-section {
+  width: 100%;
+}
+
+
+/* ───────────────────────────────────────────────────────────────
+    10. SECTION CARD — Componente colapsable base
+ ──────────────────────────────────────────────────────────────── */
+.section-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.section-card:hover {
+  border-color: var(--color-border-light);
+}
+
+.section-card[open] {
+  border-color: var(--color-accent);
+  box-shadow: 0 4px 20px rgba(245, 197, 24, 0.15);
+}
+
+.section-card:not([open]):has(.badge--success) {
+  border-color: var(--color-success-border);
+}
+
+.section-card:not([open]):has(.badge--warning) {
+  border-color: var(--color-warning-border);
+}
+
+/* Flecha del summary — reemplazamos el marcador nativo */
+.section-card summary {
+  list-style: none;
+}
+.section-card summary::-webkit-details-marker { display: none; }
+
+.section-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-4);
+  cursor: pointer;
+  user-select: none;
+  min-height: var(--touch-min);
+  position: relative;
+  transition: background var(--transition-fast);
+}
+
+.section-card__header:hover {
+  background: var(--color-surface-2);
+}
+
+.section-card__header:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--color-accent);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+/* Ícono de flecha collapse */
+.section-card__header::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--color-text-muted);
+  border-bottom: 2px solid var(--color-text-muted);
+  transform: rotate(-45deg);
+  transition: transform var(--transition-normal);
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.section-card[open] > .section-card__header::after {
+  transform: rotate(45deg);
+}
+
+.section-card__number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: var(--color-surface-3);
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+  letter-spacing: 0;
+}
+
+.section-card__title-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex: 1;
+  min-width: 0;
+}
+
+.section-card__title {
+  font-size: var(--text-md);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.section-card__subtitle {
+  font-size: var(--text-xs);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-left: var(--space-2);
+  transition: opacity var(--transition-normal);
+}
+
+.section-card[open] .section-card__subtitle {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.section-card__status {
+  font-size: var(--text-xs);
+  flex-shrink: 0;
+  /* Estado inyectado como badge por JS */
+}
+
+.section-card__badge {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+/* Cuerpo de la sección */
+.section-card__body {
+  padding: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+/* Variantes de section-card */
+.section-card--review {
+  border-color: var(--color-info-border);
+}
+
+.section-card--review .section-card__number {
+  background: var(--color-info-bg);
+  color: var(--color-info);
+}
+
+.section-card--approval {
+  border-color: var(--color-warning-border);
+}
+
+.section-card--approval .section-card__number {
+  background: var(--color-warning-bg);
+  color: var(--color-warning);
+}
+
+.section-card--doc {
+  border-color: var(--color-success-border);
+}
+
+.section-card--doc .section-card__number {
+  background: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+
+/* ───────────────────────────────────────────────────────────────
+   11. CAMPOS DE FORMULARIO
+──────────────────────────────────────────────────────────────── */
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.field__label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.field__label--required::after {
+  content: ' *';
+  color: var(--color-danger);
+}
+
+.field__input,
+.field__select,
+.field__textarea {
+  width: 100%;
+  min-height: var(--touch-min);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface-2);
+  color: var(--color-text-primary);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--text-base);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.field__input:focus,
+.field__select:focus,
+.field__textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  background-color: var(--color-surface-3);
+  box-shadow: var(--shadow-focus);
+}
+
+.field__input::placeholder,
+.field__textarea::placeholder {
+  color: var(--color-text-muted);
+}
+
+.field__input[type="date"] {
+  color-scheme: dark;
+}
+
+.field__textarea {
+  min-height: 80px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+/* Select con flecha personalizada */
+.field__select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238da3b8' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-4) center;
+  padding-right: calc(var(--space-4) * 2.5);
+  cursor: pointer;
+}
+
+.field__select:focus {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23f5c518' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+}
+
+/* Estado de error en campo */
+.field--error .field__input,
+.field--error .field__select,
+.field--error .field__textarea {
+  border-color: var(--color-danger);
+}
+
+.field__error-msg {
+  font-size: var(--text-xs);
+  color: var(--color-danger);
+  display: none;
+}
+
+.field--error .field__error-msg { display: block; }
+
+/* Campo de hint */
+.field__hint {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+
+
+/* ───────────────────────────────────────────────────────────────
+   12. TABLA DINÁMICA DE RESPONSABLES
+──────────────────────────────────────────────────────────────── */
+.dynamic-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.dynamic-table th {
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.dynamic-table td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: middle;
+}
+
+.dynamic-table tr:last-child td {
+  border-bottom: none;
+}
+
+.dynamic-table tbody tr:hover td {
+  background: var(--color-surface-2);
+}
+
+/* Input inline en tabla */
+.table-input {
+  width: 100%;
+  background: transparent;
+  color: var(--color-text-primary);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  min-height: 40px;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.table-input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  background: var(--color-surface-3);
+}
+
+/* Celda de acción eliminar */
+.dynamic-table .td-action {
+  width: var(--touch-min);
+  text-align: center;
+  padding: var(--space-1);
+}
+
+
+/* ───────────────────────────────────────────────────────────────
+   13. CHECKBOXES — Señales de parada y peligros/controles
+──────────────────────────────────────────────────────────────── */
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  min-height: var(--touch-min);
+  user-select: none;
+  box-shadow: var(--shadow-sm);
+}
+
+.checkbox-item:hover {
+  background: var(--color-surface-2);
+  border-color: var(--color-border-light);
+}
+
+.checkbox-item input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  border: 2px solid var(--color-border-light);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-2);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  position: relative;
+  margin-top: 1px;
+}
+
+.checkbox-item input[type="checkbox"]:checked {
+  background: var(--color-success);
+  border-color: var(--color-success);
+}
+
+.checkbox-item input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  width: 6px;
+  height: 11px;
+  border-right: 2.5px solid var(--color-text-inverse);
+  border-bottom: 2.5px solid var(--color-text-inverse);
+  transform: rotate(40deg);
+}
+
+.checkbox-item input[type="checkbox"]:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.checkbox-item__label {
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+  line-height: 1.45;
+  flex: 1;
+}
+
+/* Checkbox con sugerencia (Peligro sugerido) */
+.checkbox-item--suggested {
+  background: var(--color-warning-bg);
+  border: 1px solid var(--color-warning-border);
+}
+
+.checkbox-item--suggested:hover {
+  background: rgba(245, 158, 11, 0.18);
+  border-color: var(--color-warning-border);
+}
+
+.checkbox-item--suggested:has(input:checked) {
+  background: rgba(245, 158, 11, 0.08);
+  border-color: var(--color-warning);
+}
+
+.checkbox-item--suggested input[type="checkbox"]:checked {
+  background: var(--color-warning);
+  border-color: var(--color-warning);
+}
+
+/* Checkbox seleccionado por defecto */
+.checkbox-item:has(input:checked) {
+  background: var(--color-success-bg);
+  border-color: var(--color-success);
+}
+
+/* Sub-grupo de checkboxes con colapsable */
+.checkbox-group {
+  margin-bottom: var(--space-3);
+}
+
+.checkbox-group:last-child {
+  margin-bottom: 0;
+}
+
+.checkbox-group__toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-surface-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  min-height: 40px;
+  transition: background var(--transition-fast), color var(--transition-fast);
+  user-select: none;
+}
+
+.checkbox-group__toggle:hover {
+  background: var(--color-surface-2);
+  color: var(--color-text-primary);
+}
+
+.checkbox-group__toggle-arrow {
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform var(--transition-normal);
+  margin-left: auto;
+}
+
+.checkbox-group--open .checkbox-group__toggle-arrow {
+  transform: rotate(45deg);
+}
+
+.checkbox-group__counter {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-accent);
+  margin-left: var(--space-1);
+}
+
+.checkbox-group__items {
+  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-top: none;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  display: block;
+}
+
+/* DEFECTO 3/4 — El JS muestra/oculta el contenedor mediante el atributo
+   [hidden] (toggleAttribute), pero el CSS tenía display:none permanente, que
+   [hidden] no podía anular, por lo que las categorías/controles internos
+   nunca se desplegaban. La visibilidad ahora respeta el atributo [hidden]
+   que el JS sí controla, sin modificar JavaScript. */
+.checkbox-group__items[hidden] {
+  display: none;
+}
+
+.checkbox-group--open .checkbox-group__items {
+  display: block;
+}
+
+/* Ítems de peligros/controles — lista vertical */
+.checkbox-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+}
+
+.checkbox-item__code {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--color-accent);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  margin-top: 2px;
+}
+
+
+/* ───────────────────────────────────────────────────────────────
+   14. STEP CARD — Tarjeta de paso
+──────────────────────────────────────────────────────────────── */
+.step-card {
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: border-color var(--transition-normal);
+  margin-bottom: var(--space-3);
+}
+
+.step-card:last-child { margin-bottom: 0; }
+
+.step-card--complete { border-color: var(--color-success-border); }
+.step-card--pending  { border-color: var(--color-warning-border); }
+.step-card--new      { border-color: var(--color-accent); animation: pulse-border 1.5s ease-out; }
+
+@keyframes pulse-border {
+  0%   { box-shadow: 0 0 0 0 rgba(245, 197, 24, 0.5); }
+  70%  { box-shadow: 0 0 0 8px rgba(245, 197, 24, 0); }
+  100% { box-shadow: none; }
+}
+
+/* Cabecera del paso */
+.step-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-3) var(--space-3) var(--space-4);
+  background: var(--color-surface-2);
+  cursor: pointer;
+  min-height: 56px;
+  user-select: none;
+  transition: background var(--transition-fast);
+}
+
+.step-card__header:hover { background: var(--color-surface-3); }
+
+.step-card__number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--color-surface-3);
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+.step-card__meta {
+  flex: 1;
+  min-width: 0;
+}
+
+.step-card__title {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.step-card__title--empty {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.step-card__counters {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-1);
+  flex-wrap: wrap;
+}
+
+.step-counter {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.step-counter--has-data { color: var(--color-text-secondary); }
+
+/* Indicador de completitud */
+.step-completitud {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.step-completitud--complete { color: var(--color-success); }
+.step-completitud--pending  { color: var(--color-warning); }
+.step-completitud--error    { color: var(--color-danger); }
+
+/* Acciones del paso */
+.step-card__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  flex-shrink: 0;
+}
+
+.step-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: var(--color-text-muted);
+  border-radius: var(--radius-sm);
+  transition: color var(--transition-fast), background var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.step-action-btn svg { width: 16px; height: 16px; }
+
+.step-action-btn:hover {
+  color: var(--color-text-primary);
+  background: var(--color-surface-3);
+}
+
+.step-action-btn:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.step-action-btn--danger:hover {
+  color: var(--color-danger);
+  background: var(--color-danger-bg);
+}
+
+.step-action-btn--duplicate:hover {
+  color: var(--color-info);
+  background: var(--color-info-bg);
+}
+
+/* Cuerpo del paso */
+.step-card__body {
+  display: none;
+  border-top: 1px solid var(--color-border);
+}
+
+.step-card--open .step-card__body { display: block; }
+
+/* Descripción del paso */
+.step-description {
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Sub-paneles peligros y controles */
+.step-subpanel {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.step-subpanel:last-child { border-bottom: none; }
+
+.step-subpanel__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  cursor: pointer;
+  min-height: var(--touch-min);
+  background: var(--color-surface-2);
+  transition: background var(--transition-fast);
+  user-select: none;
+}
+
+.step-subpanel__header:hover { background: var(--color-surface-3); }
+
+.step-subpanel__icon {
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--color-text-muted);
+  border-bottom: 2px solid var(--color-text-muted);
+  transform: rotate(-45deg);
+  transition: transform var(--transition-normal);
+  flex-shrink: 0;
+}
+
+.step-subpanel--open .step-subpanel__icon {
+  transform: rotate(45deg);
+}
+
+.step-subpanel__title {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.step-subpanel__count {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-accent);
+  margin-left: auto;
+}
+
+.step-subpanel__body {
+  display: none;
+  padding: var(--space-3) var(--space-4);
+}
+
+.step-subpanel--open .step-subpanel__body { display: block; }
+
+/* Overview de pasos */
+.steps-overview {
+  display: flex;
+  gap: var(--space-2);
+  padding: var(--space-3) 0 var(--space-4);
+  flex-wrap: wrap;
+}
+
+
+/* ───────────────────────────────────────────────────────────────
+   15. SECCIÓN RESUMEN TÉCNICO
+──────────────────────────────────────────────────────────────── */
+.summary-section {
+  margin-bottom: var(--space-5);
+}
+
+.summary-section:last-child { margin-bottom: 0; }
+
+.summary-section__title {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.summary-row {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: var(--text-sm);
+}
+
+.summary-row:last-child { border-bottom: none; }
+
+.summary-row__label {
+  color: var(--color-text-muted);
+  min-width: 120px;
+  flex-shrink: 0;
+}
+
+.summary-row__value {
+  color: var(--color-text-primary);
+  font-weight: 500;
+  flex: 1;
+}
+
+/* Ítem de peligro/control en resumen */
+.summary-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  margin: 2px;
+}
+
+.summary-item__code {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.summary-item__desc {
+  color: var(--color-text-secondary);
+}
+
+
+/* ───────────────────────────────────────────────────────────────
+   16. APROBACIÓN HSE
+──────────────────────────────────────────────────────────────── */
+.approval-options {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin: var(--space-4) 0;
+}
+
+.radio-option {
+  flex: 1;
+  min-width: 140px;
+  position: relative;
+}
+
+.radio-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.radio-option__label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background: var(--color-surface-2);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  min-height: var(--touch-min);
+  text-align: center;
+  user-select: none;
+}
+
+.radio-option__label:hover {
+  border-color: var(--color-border-light);
+  color: var(--color-text-primary);
+}
+
+.radio-option input:checked + .radio-option__label--approve {
+  border-color: var(--color-success);
+  background: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+.radio-option input:checked + .radio-option__label--reject {
+  border-color: var(--color-danger);
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
+}
+
+.radio-option input:focus-visible + .radio-option__label {
+  box-shadow: var(--shadow-focus);
+}
+
+/* Estado de aprobación */
+.approval-status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  margin-top: var(--space-4);
+}
+
+.approval-status--approved {
+  background: var(--color-success-bg);
+  border: 1px solid var(--color-success-border);
+  color: var(--color-success);
+}
+
+.approval-status--rejected {
+  background: var(--color-danger-bg);
+  border: 1px solid var(--color-danger-border);
+  color: var(--color-danger);
+}
+
+.approval-status--pending {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+
+
+/* ───────────────────────────────────────────────────────────────
+   17. IDENTIFICACIÓN DEL DOCUMENTO
+──────────────────────────────────────────────────────────────── */
+.doc-id-preview {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--color-surface-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  margin-top: var(--space-4);
+}
+
+.doc-id-preview__filename {
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-accent);
+  letter-spacing: 0.05em;
+  flex: 1;
+  word-break: break-all;
+}
+
+.doc-id-preview__label {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Selector de modo PDF */
+.pdf-mode-selector {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-top: var(--space-4);
+}
+
+.pdf-mode-option {
+  flex: 1;
+  min-width: 140px;
+  position: relative;
+}
+
+.pdf-mode-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.pdf-mode-option__label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface-2);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: center;
+  user-select: none;
+}
+
+.pdf-mode-option__label:hover {
+  border-color: var(--color-border-light);
+}
+
+.pdf-mode-option input:checked + .pdf-mode-option__label {
+  border-color: var(--color-success);
+  background: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+.pdf-mode-option input:disabled + .pdf-mode-option__label {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pdf-mode-option__hint {
+  font-size: var(--text-xs);
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+
+/* ───────────────────────────────────────────────────────────────
+   18. BARRA DE ACCIÓN FINAL (sticky bottom)
+──────────────────────────────────────────────────────────────── */
+.action-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-action);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  padding-bottom: calc(var(--space-3) + env(safe-area-inset-bottom, 0px));
+  background: rgba(18, 24, 34, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(44, 61, 85, 0.5);
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.5);
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+/* Centrado de la barra cuando hay max-width */
+@media (min-width: 860px) {
+  .action-bar {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 860px;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    border-left: 1px solid var(--color-border);
+    border-right: 1px solid var(--color-border);
+  }
+}
+
+.action-bar .btn-primary {
+  flex: 1;
+}
+
+.action-bar .btn-secondary {
+  flex-shrink: 0;
+}
+
+
+/* ───────────────────────────────────────────────────────────────
+   19. MODAL
+──────────────────────────────────────────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: overlay-in var(--transition-normal) ease;
+}
+
+@keyframes overlay-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Modal sheet (sube desde abajo en móvil) */
+.modal {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  width: 100%;
+  max-width: 860px;
+  display: flex;
+  flex-direction: column;
+  animation: modal-up var(--transition-normal) ease;
+  max-height: 92dvh;
+  overflow: hidden;
+}
+
+@keyframes modal-up {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+.modal__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-4) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.modal__title {
+  font-size: var(--text-md);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  flex: 1;
+}
+
+.modal__filename {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--color-accent);
+  letter-spacing: 0.04em;
+}
+
+.modal__close {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.modal__body {
+  flex: 1;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.modal__footer {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  flex-shrink: 0;
+  padding-bottom: calc(var(--space-4) + env(safe-area-inset-bottom, 0px));
+}
+
+.modal__footer .btn-primary { flex: 1; }
+
+/* Modal de confirmación — más pequeño */
+.modal--confirm {
+  border-radius: var(--radius-xl);
+  max-width: 420px;
+  margin: auto;
+}
+
+.modal--confirm .modal__body {
+  padding: var(--space-5) var(--space-5) var(--space-2);
+}
+
+/* Vista previa PDF */
+.pdf-preview-frame {
+  width: 100%;
+  height: calc(92dvh - 180px);
+  border: none;
+  background: #fff;
+  display: block;
+}
+
+.pdf-preview-fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  padding: var(--space-8);
+  text-align: center;
+  color: var(--color-text-secondary);
+  min-height: 260px;
+}
+
+.pdf-preview-fallback svg {
+  width: 64px;
+  height: 64px;
+  color: var(--color-text-muted);
+}
+
+
+/* ───────────────────────────────────────────────────────────────
+   20. TOAST — Notificaciones
+──────────────────────────────────────────────────────────────── */
+.toast-container {
+  position: fixed;
+  bottom: calc(var(--touch-min) * 2 + var(--space-4));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--z-toast);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  pointer-events: none;
+  width: calc(100% - var(--space-8));
+  max-width: 420px;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  box-shadow: var(--shadow-lg);
+  animation: toast-in var(--transition-normal) ease, toast-out 0.3s ease 2.7s forwards;
+  pointer-events: auto;
+  width: 100%;
+}
+
+.toast svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+.toast--success { background: #1a3a27; border: 1px solid var(--color-success-border); color: var(--color-success); }
+.toast--warning { background: #3a2a10; border: 1px solid var(--color-warning-border); color: var(--color-warning); }
+.toast--danger  { background: #3a1a18; border: 1px solid var(--color-danger-border);  color: var(--color-danger);  }
+.toast--info    { background: #152840; border: 1px solid var(--color-info-border);    color: var(--color-info);    }
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(16px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes toast-out {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-8px); }
+}
+
+
+/* ───────────────────────────────────────────────────────────────
+   21. SEPARADOR DE SECCIÓN CON TEXTO
+──────────────────────────────────────────────────────────────── */
+.text-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+}
+
+.text-divider::before,
+.text-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.text-divider__text {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+
+/* ───────────────────────────────────────────────────────────────
+   22. ESTADO VACÍO
+──────────────────────────────────────────────────────────────── */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-10) var(--space-6);
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.empty-state svg {
+  width: 48px;
+  height: 48px;
+  opacity: 0.4;
+}
+
+.empty-state__title {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.empty-state__desc {
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+
+/* ───────────────────────────────────────────────────────────────
+   23. RESPONSIVE — Escritorio (≥ 768px)
+──────────────────────────────────────────────────────────────── */
+@media (min-width: 768px) {
+
+  .app-header {
+    padding: 0 var(--space-6);
+  }
+
+  .form-hse {
+    padding: var(--space-6) var(--space-6) calc(var(--touch-min) * 2 + var(--space-10));
+    gap: var(--space-4);
+  }
+
+  .checkbox-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+  }
+
+  .step-card__header {
+    padding: var(--space-4) var(--space-4) var(--space-4) var(--space-5);
+  }
+
+  .section-card__body {
+    padding: var(--space-5) var(--space-6);
+  }
+
+  .step-description,
+  .step-subpanel__body {
+    padding: var(--space-4) var(--space-5);
+  }
+
+  .modal {
+    align-self: center;
+    border-radius: var(--radius-xl);
+    margin: var(--space-6);
+    max-height: 88dvh;
+    animation: modal-scale var(--transition-normal) ease;
+  }
+
+  @keyframes modal-scale {
+    from { opacity: 0; transform: scale(0.95); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  .modal-overlay {
+    align-items: center;
+    padding: var(--space-6);
+  }
+
+  .modal--confirm {
+    align-self: center;
+  }
+
+  .pdf-preview-frame {
+    height: calc(88dvh - 180px);
+  }
+
+  .approval-options { flex-wrap: nowrap; }
+  .pdf-mode-selector { flex-wrap: nowrap; }
+
+  /* Tabla de responsables: ancho fijo en desktop */
+  .dynamic-table th:nth-child(1),
+  .dynamic-table td:nth-child(1) { width: 50%; }
+  .dynamic-table th:nth-child(2),
+  .dynamic-table td:nth-child(2) { width: 35%; }
+  .dynamic-table th:nth-child(3),
+  .dynamic-table td:nth-child(3) { width: 15%; }
+}
+
+@media (min-width: 600px) {
+  .checkbox-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 380px) {
+  :root {
+    --text-base: 0.875rem;
+  }
+
+  .step-card__actions {
+    gap: 2px;
+  }
+
+  .step-action-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .step-action-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+
+/* ───────────────────────────────────────────────────────────────
+   24. @MEDIA PRINT — Fallback window.print()
+   (El PDF principal se genera con jsPDF, esto es solo el fallback)
+──────────────────────────────────────────────────────────────── */
+@media print {
+  /* Ocultar toda la UI de la app */
+  .app-header,
+  .draft-banner,
+  .action-bar,
+  .modal-overlay,
+  .toast-container,
+  .btn-add,
+  .step-card__actions,
+  .step-subpanel__header,
+  .section-card summary .section-card__number,
+  #btn-import-backup,
+  #btn-export-backup,
+  #btn-new-form {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+    color: black;
+    font-size: 11pt;
+  }
+
+  .form-hse {
+    padding: 0;
+    gap: 0;
+  }
+
+  .section-card {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    page-break-inside: avoid;
+  }
+
+  .section-card__body {
+    border-top: 1px solid #ccc;
+    padding: 8pt;
+  }
+
+  .step-card {
+    border: 1px solid #ccc;
+    border-radius: 0;
+    margin-bottom: 8pt;
+    page-break-inside: avoid;
+  }
+}
+
+
+/* ───────────────────────────────────────────────────────────────
+   FASE 3B — Estilos para UIPeligros, UIControles y Matrix
+──────────────────────────────────────────────────────────────── */
+
+/* Badges de rol de control (obligatorio / recomendado / eliminado) */
+.control-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  padding: 2px 5px;
+  border-radius: var(--radius-sm);
+}
+
+.control-badge--obligatorio {
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
+  border: 1px solid var(--color-danger-border);
+}
+
+.control-badge--recomendado {
+  background: var(--color-warning-bg);
+  color: var(--color-warning);
+  border: 1px solid var(--color-warning-border);
+}
+
+.control-badge--eliminado {
+  background: var(--color-surface-3);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+  text-decoration: line-through;
+}
+
+/* Ítem de checkbox con control obligatorio */
+.checkbox-item--obligatorio {
+  background: var(--color-danger-bg);
+  border: 1px solid var(--color-danger-border);
+  border-radius: var(--radius-md);
+}
+
+.checkbox-item--obligatorio:hover {
+  background: rgba(239, 68, 68, 0.18);
+  border-color: var(--color-danger-border);
+}
+
+.checkbox-item--obligatorio:has(input:checked) {
+  background: var(--color-success-bg);
+  border-color: var(--color-success);
+}
+
+.checkbox-item--obligatorio:has(input:checked) input[type="checkbox"]:checked {
+  background: var(--color-success);
+  border-color: var(--color-success);
+}
+
+/* Items de lista de checkboxes (peligros y controles) */
+.checkbox-list__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  min-height: var(--touch-min);
+  user-select: none;
+}
+
+.checkbox-list__item:hover {
+  background: var(--color-surface-2);
+  border-color: var(--color-border-light);
+}
+
+.checkbox-list__item:has(input:checked) {
+  background: var(--color-success-bg);
+  border-color: var(--color-success);
+}
+
+/* Leyenda de sugerencias de controles */
+.controles-leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  padding: var(--space-3);
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+}
+
+.controles-leyenda span {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* Panel de peligros / controles */
+.peligros-panel,
+.controles-panel {
+  padding: var(--space-2) 0;
+}
+
+/* Grupos con destacados: borde izquierdo de color */
+.checkbox-group:has(.checkbox-item--obligatorio) > .checkbox-group__toggle {
+  border-left: 3px solid var(--color-danger);
+}
+
+.checkbox-group:has(.checkbox-item--suggested) > .checkbox-group__toggle {
+  border-left: 3px solid var(--color-warning);
+}
+
+
+/* ───────────────────────────────────────────────────────────────
+   FASE 4 — Estilos UIResumen, UIAprobacion, UIDocId
+──────────────────────────────────────────────────────────────── */
+
+/* ── UIResumen ────────────────────────────────────────────── */
+.resumen-contenedor {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.resumen-bloque {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+}
+
+.resumen-bloque__titulo {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.resumen-senal {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  padding: var(--space-1) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.resumen-senal:last-child { border-bottom: none; }
+
+/* Tarjeta de paso en resumen */
+.resumen-paso {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: var(--space-3);
+  background: var(--color-surface);
+}
+
+.resumen-paso:last-child { margin-bottom: 0; }
+
+.resumen-paso__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  cursor: pointer;
+  min-height: 52px;
+  background: var(--color-surface-2);
+  user-select: none;
+  transition: background var(--transition-fast);
+}
+
+.resumen-paso__header:hover { background: var(--color-surface-3); }
+
+.resumen-paso__header--open .resumen-paso__arrow {
+  transform: rotate(45deg);
+}
+
+.resumen-paso__arrow {
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--color-text-muted);
+  border-bottom: 2px solid var(--color-text-muted);
+  transform: rotate(-45deg);
+  transition: transform var(--transition-normal);
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.resumen-paso__num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: var(--color-surface-3);
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+.resumen-paso__meta { flex: 1; min-width: 0; }
+
+.resumen-paso__titulo {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.resumen-paso__counters {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: 2px;
+  flex-wrap: wrap;
+}
+
+.resumen-paso__body {
+  padding: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+/* Sub-bloques dentro de cada paso */
+.resumen-subbloque {
+  margin-bottom: var(--space-4);
+}
+
+.resumen-subbloque:last-child { margin-bottom: 0; }
+
+.resumen-subbloque__titulo {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-2);
+}
+
+.resumen-subbloque--justif {
+  background: var(--color-warning-bg);
+  border: 1px solid var(--color-warning-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+}
+
+.resumen-subbloque--justif .resumen-subbloque__titulo {
+  color: var(--color-warning);
+}
+
+/* Ítems de peligro y control en resumen */
+.resumen-item-peligro,
+.resumen-item-control {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: var(--text-sm);
+  flex-wrap: wrap;
+}
+
+.resumen-item-peligro:last-child,
+.resumen-item-control:last-child { border-bottom: none; }
+
+/* Ítems de justificación */
+.resumen-item-justif {
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--color-warning-border);
+}
+
+.resumen-item-justif:last-child { border-bottom: none; }
+
+.resumen-item-justif__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-2);
+}
+
+.resumen-item-justif__texto {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  font-style: italic;
+  padding-left: var(--space-2);
+  border-left: 2px solid var(--color-warning);
+}
+
+.resumen-justif-fecha {
+  display: block;
+  font-style: normal;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-top: var(--space-1);
+}
+
+.resumen-vacio {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  font-style: italic;
+  padding: var(--space-2) 0;
+}
+
+/* ── UIDocId ───────────────────────────────────────────────── */
+.doc-id-preview {
+  background: var(--color-surface-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  margin-top: var(--space-2);
+}
+
+.doc-id-preview__label {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-2);
+}
+
+.doc-id-preview__filename {
+  font-family: var(--font-mono);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--color-accent);
+  letter-spacing: 0.05em;
+  word-break: break-all;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   CORRECCIÓN DE BRECHAS VISUALES — Integración app.js ↔ styles.css
+   Solo presentación. No altera lógica, datos, PWA, Backup ni HSE.
+   Coherente con el tema oscuro y los tokens existentes.
+   ════════════════════════════════════════════════════════════════ */
+
+/* ── Grupo A — Tipos de Trabajo (UITiposTrabajo) ─────────────────── */
+.tt-chips {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2);
+  margin: var(--space-2) 0;
+}
+
+@media (min-width: 600px) {
+  .tt-chips {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.tt-empty {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  font-style: italic;
+  padding: var(--space-2) 0;
+}
+
+/* ── Grupo B — Supervisión Consolidada (Etapa 1.8A) ──────────────── */
+/* .resumen-row: variante de fila para etiqueta + badge alineados.
+   Mínima y compatible con el patrón .summary-row existente. */
+.resumen-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+  font-size: var(--text-sm);
+}
+
+.resumen-unidad {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.resumen-unidad__cab {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.resumen-unidad__cod {
+  font-weight: 700;
+  color: var(--color-text-primary);
+  font-size: var(--text-sm);
+}
+
+.resumen-unidad__pasos {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  margin-left: auto;
+}
