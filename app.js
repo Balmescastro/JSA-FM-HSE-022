@@ -2105,6 +2105,15 @@ const UIPasos = (() => {
 
     // Render bajo demanda al primer apertura
     if (estaAbierto) {
+      // Cerrar el otro subpanel del mismo paso para comportamiento de acordeón
+      const otroTipo = tipo === 'peligros' ? 'controles' : 'peligros';
+      const otroSubpanel = document.getElementById(`subpanel-${otroTipo}-${id}`);
+      if (otroSubpanel && otroSubpanel.classList.contains('step-subpanel--open')) {
+        otroSubpanel.classList.remove('step-subpanel--open');
+        const otroHeader = otroSubpanel.querySelector('.step-subpanel__header');
+        if (otroHeader) otroHeader.setAttribute('aria-expanded', 'false');
+      }
+
       const bodyEl = document.getElementById(`subpanel-body-${tipo}-${id}`);
       if (bodyEl && bodyEl.innerHTML.includes('<!-- Renderizado')) {
         if (tipo === 'peligros') UIPeligros.renderEnPaso(id, bodyEl);
@@ -2620,9 +2629,8 @@ const UIControles = (() => {
       return _htmlItem(c, seleccionados, rol, justificaciones);
     }).join('');
 
-    // ¿El grupo tiene algún obligatorio o recomendado? Abrirlo por defecto.
-    const tieneDestacados = controles.some(c => obligatorios.has(c.codigo) || recomendados.has(c.codigo));
-    const abierto         = tieneDestacados;
+    // Todos los grupos cerrados por defecto para comportamiento de acordeón estricto
+    const abierto         = false;
 
     return `
       <div class="checkbox-group" id="ctrlgrp-${grpIdx}">
@@ -2681,14 +2689,14 @@ const UIControles = (() => {
     return `
       <div class="checkbox-group" id="ttgrp-${grpIdx}">
         <button type="button"
-          class="checkbox-group__toggle checkbox-group--open"
+          class="checkbox-group__toggle"
           data-grp-toggle="ttgrp-items-${grpIdx}"
-          aria-expanded="true"
+          aria-expanded="false"
           aria-controls="ttgrp-items-${grpIdx}">
           ${nombreEsc}${counter}
-          <span class="checkbox-group__toggle-arrow" style="transform:rotate(45deg);"></span>
+          <span class="checkbox-group__toggle-arrow" style="transform:rotate(-45deg);"></span>
         </button>
-        <div class="checkbox-group__items checkbox-list" id="ttgrp-items-${grpIdx}">
+        <div class="checkbox-group__items checkbox-list" id="ttgrp-items-${grpIdx}" hidden>
           ${items}
         </div>
       </div>`;
