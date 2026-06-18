@@ -4947,6 +4947,9 @@ const App = (() => {
       // 9. Inicializar comportamiento de acordeón exclusivo
       _iniciarAcordeonInteligente();
 
+      // 10. Inicializar el tema claro/oscuro
+      _bindThemeToggle();
+
       console.info('[App] FM-HSE-022 iniciada correctamente.');
 
     } catch (err) {
@@ -5021,6 +5024,55 @@ const App = (() => {
         }
       });
     });
+  }
+
+  // ── Gestión del Tema Claro / Oscuro ────────────────────────
+  function _bindThemeToggle() {
+    const btn = Utils.$el('btn-toggle-theme');
+    if (!btn) return;
+
+    // Leer el tema inicial guardado (por defecto oscuro '#1a2332')
+    const temaGuardado = localStorage.getItem('app-theme') || 'dark';
+    if (temaGuardado === 'light') {
+      document.body.classList.add('light-theme');
+      _actualizarIconoTema('light');
+      // Actualizar el meta tag theme-color
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+      if (metaThemeColor) metaThemeColor.setAttribute('content', '#ffffff');
+    } else {
+      document.body.classList.remove('light-theme');
+      _actualizarIconoTema('dark');
+      // Actualizar el meta tag theme-color
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+      if (metaThemeColor) metaThemeColor.setAttribute('content', '#1a2332');
+    }
+
+    btn.addEventListener('click', () => {
+      const esClaro = document.body.classList.toggle('light-theme');
+      const nuevoTema = esClaro ? 'light' : 'dark';
+      localStorage.setItem('app-theme', nuevoTema);
+      _actualizarIconoTema(nuevoTema);
+      
+      // Actualizar el meta tag theme-color de forma dinámica
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+      if (metaThemeColor) {
+        metaThemeColor.setAttribute('content', esClaro ? '#ffffff' : '#1a2332');
+      }
+
+      Utils.toast(`Modo ${esClaro ? 'claro' : 'oscuro'} activado.`, 'info', 2000);
+    });
+  }
+
+  function _actualizarIconoTema(tema) {
+    const iconDark = document.querySelector('#btn-toggle-theme .icon-theme-dark');
+    const iconLight = document.querySelector('#btn-toggle-theme .icon-theme-light');
+    if (tema === 'light') {
+      iconDark?.classList.add('hidden');
+      iconLight?.classList.remove('hidden');
+    } else {
+      iconDark?.classList.remove('hidden');
+      iconLight?.classList.add('hidden');
+    }
   }
 
   return { init, renderTodo, actualizarBtnPDF };

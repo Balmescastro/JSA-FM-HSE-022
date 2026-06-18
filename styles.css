@@ -108,6 +108,74 @@
   --z-modal:   400;
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   MODO CLARO (LIGHT THEME) — Diseño premium basado en el mockup
+   ═══════════════════════════════════════════════════════════════ */
+body.light-theme {
+  /* Paleta principal — tema claro basado en mockup de dashboard */
+  --color-bg:           #f1f5f9; /* Gris azulado claro de fondo */
+  --color-surface:      #ffffff; /* Tarjetas y paneles en blanco puro */
+  --color-surface-2:    #f8fafc; /* Gris ultra claro para inputs */
+  --color-surface-3:    #e2e8f0; /* Bordes e inputs activos/foco */
+  --color-border:       #e2e8f0; /* Borde sutil */
+  --color-border-light: #cbd5e1; /* Borde más visible */
+
+  /* Texto */
+  --color-text-primary:   #0f172a; /* Slate 900 (Gris oscuro/negro para alta lectura) */
+  --color-text-secondary: #475569; /* Slate 600 (Gris medio) */
+  --color-text-muted:     #64748b; /* Slate 500 (Gris claro) */
+  --color-text-inverse:   #ffffff;
+
+  /* Acento de control / Botones (Azul "Guardar") */
+  --color-accent:       #0056c6;
+  --color-accent-dark:  #004094;
+  --color-accent-muted: rgba(0, 86, 198, 0.08);
+
+  /* HSE status - colores del mockup */
+  --color-success:       #16a34a; /* Verde esmeralda (bajo/docx/aprobar) */
+  --color-success-bg:    rgba(22, 163, 74, 0.08);
+  --color-success-border:rgba(22, 163, 74, 0.25);
+
+  --color-warning:       #ea580c; /* Naranja industrial (medio/html/pendiente) */
+  --color-warning-bg:    rgba(234, 88, 12, 0.08);
+  --color-warning-border:rgba(234, 88, 12, 0.25);
+
+  --color-danger:        #ef4444; /* Rojo vivo (alto/nuevo/rechazar) */
+  --color-danger-bg:     rgba(239, 68, 68, 0.08);
+  --color-danger-border: rgba(239, 68, 68, 0.25);
+
+  /* Sombras del mockup */
+  --shadow-sm:  0 1px 2px rgba(15,23,42,0.05);
+  --shadow-md:  0 4px 6px -1px rgba(15,23,42,0.05), 0 2px 4px -2px rgba(15,23,42,0.05);
+  --shadow-lg:  0 10px 15px -3px rgba(15,23,42,0.08), 0 4px 6px -4px rgba(15,23,42,0.08);
+  --shadow-focus: 0 0 0 3px rgba(0, 86, 198, 0.25);
+}
+
+/* Cabecera adaptativa en modo claro */
+body.light-theme .app-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .app-header__code {
+  color: var(--color-accent);
+}
+
+body.light-theme .app-header__title {
+  color: var(--color-text-secondary);
+}
+
+/* Evitar que las cajas de selección (select) repitan el icono de flecha en foco */
+body.light-theme select:focus {
+  background-color: var(--color-surface-3) !important;
+}
+
+/* Adaptar selector de fecha al modo claro */
+body.light-theme .field__input[type="date"] {
+  color-scheme: light;
+}
+
 
 /* ───────────────────────────────────────────────────────────────
    2. RESET Y BASE
